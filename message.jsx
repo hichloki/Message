@@ -1,9 +1,11 @@
 class MiniChat extends React.Component {
     constructor(props) {
         super(props)
-      this.state = { Login: "",connexion : false , Tabuser:[] , TabMess:[]}
+      this.state = { Login: "",connexion : false ,Datee:"" ,envoie: false,text:"",Tabuser:[] , TabMess:[]}
       this.chgLogin=this.chgLogin.bind(this)
       this.ChgStatutConnect=this.ChgStatutConnect.bind(this)
+      this.chgMessage=this.chgMessage.bind(this)
+      this.envoiesms=this.envoiesms.bind(this)
     }
     render(){
         return (
@@ -19,8 +21,10 @@ class MiniChat extends React.Component {
 
     <div id="Message">
 
-     <Tchat></Tchat>
-       <Redac connec={this.state.connexion}></Redac> 
+     <Tchat TabTchat={this.state.TabMess}  ></Tchat>
+
+
+       <Redac connec={this.state.connexion} click={this.envoiesms} mess={this.state.text} chgmess={this.chgMessage}></Redac> 
 
     </div>
 </div>
@@ -36,20 +40,31 @@ chgLogin(event) {
     this.setState({ Login: event.target.value })
 
 }
+chgMessage(event){
+    this.setState({text: event.target.value})
+}
 
 ChgStatutConnect(event){
+
     event.preventDefault()
     this.setState({connexion : !this.state.connexion})
     if(this.state.connexion == false){
         this.setState({Tabuser:[this.state.Login]})
+
     }else{
         this.setState({Tabuser :[]})
     }
 }
 
-AfficheUtilisateur(){
-    let TabUtilisateur=[]
 
+envoiesms(){
+    if(this.state.text != ""){
+       let date = new Date()
+       let TMPsms= [...this.state.TabMess]
+       TMPsms.push({nom:this.state.Login , date: date , sms:this.state.text})
+        this.setState({TabMess: TMPsms})
+        this.state.text=""
+    }
 }
 
 }
@@ -102,7 +117,17 @@ return (
 
 function Tchat(props){
     return(
-        <section id="affmessage"></section>
+        <section id="affmessage">
+             
+      {props.TabTchat.map((ligne,key)=>{
+        return(
+            <div className="BlocMess" key={key}>
+    <p> {ligne.sms}  </p>
+            </div> )
+})}
+
+            
+        </section>
     )
 }
 
@@ -112,8 +137,8 @@ function Redac(props){
            
             {(props.connec == true)?(
         <div className="texto">
-        <textarea name="zoneT" id="zoneT"></textarea>
-        <button type="submit" id="btnenvoie">Envoyer</button>
+        <textarea name="zoneT" id="zoneT" value={props.mess} onChange={props.chgmess} ></textarea>
+        <button type="submit" id="btnenvoie" onClick={props.click}>Envoyer</button>
         </div>
     ): (
        <div></div>

@@ -83,6 +83,21 @@ background-color: rgba(122, 133, 145, 0.507);
 
 }
 
+.BlocMess{
+    width: 80%;
+    min-height: 3vh;
+    background-color: rgb(238, 238, 238);
+    border-radius: 10px;
+    margin-top: 2%;
+margin-left: 1%;
+overflow-wrap: break-word;
+color:rgba(2, 86, 196, 0.815) ;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+font-size: 18px;
+font-weight: 400;
+}
+
+
 #redaction{
 
     border-bottom:slategray 3px solid ;
@@ -116,9 +131,14 @@ background-color: rgba(122, 133, 145, 0.507);
     border-radius: 5px;
     color: rgb(255, 255, 255);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 15px;
-    
-    
+    font-size: 15px;  
+}
+
+#btnenvoie:hover{
+    background-color: rgb(7, 30, 241);
+    cursor:pointer;
+    transition: ease 700ms;
+
 }
     /* PARTIE FOOTER */
 
