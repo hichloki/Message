@@ -1,0 +1,1 @@
+let ws = new WebSocket("WSS://ws.jdedev.fr:8124/")

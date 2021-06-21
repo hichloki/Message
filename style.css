@@ -66,6 +66,10 @@ color: snow;
 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+.loginmenu{
+    color: rgb(9, 31, 236);
+}
+
 /* -------------- PARTIE CORPS ------------- */
 
 #Message{
@@ -83,13 +87,31 @@ background-color: rgba(122, 133, 145, 0.507);
 
 }
 
+.contenuu{
+display: flex;
+flex-direction: column;
+margin-top: 1%;
+margin-left: 3%;
+
+}
+
+.infox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80% ;
+    color:rgba(2, 86, 196, 0.815) ;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+}
+
+
+
 .BlocMess{
     width: 80%;
     min-height: 3vh;
     background-color: rgb(238, 238, 238);
     border-radius: 10px;
-    margin-top: 2%;
-margin-left: 1%;
 overflow-wrap: break-word;
 color:rgba(2, 86, 196, 0.815) ;
 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;

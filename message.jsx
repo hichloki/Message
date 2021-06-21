@@ -1,3 +1,11 @@
+let ws = new WebSocket("WSS://ws.jdedev.fr:8124/")
+
+ws.onmessage = (data)=>{
+    // console.log(data)
+    let message =JSON.parse(data.data)
+        console.log(message)
+}
+
 class MiniChat extends React.Component {
     constructor(props) {
         super(props)
@@ -53,13 +61,19 @@ ChgStatutConnect(event){
 
     }else{
         this.setState({Tabuser :[]})
+        this.setState({TabMess:[]})
     }
 }
 
 
 envoiesms(){
     if(this.state.text != ""){
-       let date = new Date()
+
+        let d = new Date();
+        var h = addZero(d.getHours());
+        var m = addZero(d.getMinutes());
+        var s = addZero(d.getSeconds());
+        let date =  h + ":" + m + ":" + s
        let TMPsms= [...this.state.TabMess]
        TMPsms.push({nom:this.state.Login , date: date , sms:this.state.text})
         this.setState({TabMess: TMPsms})
@@ -103,7 +117,8 @@ function Menu(props){
 {props.TabUtilisa.map((ligne,key)=>{
 return (
     <div key={key}>
-{ligne} <p>est Actif </p>
+
+<p className="loginmenu"> {ligne} </p>  <p> est  Actif </p>
     </div>
 )
 })}
@@ -118,12 +133,19 @@ return (
 function Tchat(props){
     return(
         <section id="affmessage">
-             
+            
       {props.TabTchat.map((ligne,key)=>{
         return(
-            <div className="BlocMess" key={key}>
+            <div className="contenuu" key={key}>
+                <div className="infox">
+                <span>{ligne.nom}</span>
+                <span>{ligne.date}</span>
+                </div>
+            <div className="BlocMess" >          
     <p> {ligne.sms}  </p>
-            </div> )
+            </div>
+            </div>
+             )
 })}
 
             
@@ -155,4 +177,16 @@ function Foot(props){
 </div>
     )
 }
+
+
+
+function addZero(i) {
+    if (i < 10) {
+      i = "0" + i;
+    }
+    return i;
+  }
+  
+
+
 ReactDOM.render(<MiniChat />, document.getElementById("app"))
